@@ -31,7 +31,7 @@ ___________________________
 <img src="./imgs/cnntrf.png" alt="drawing" width="400"/>
 
 
-### 2. ConvNext
+### 2. [ConvNext](https://arxiv.org/abs/2201.03545)
 ### 3. ViT (DeiT)
 ![](./imgs/adjuststeps.png)
 ### 4. Wav2Vec 2.0
