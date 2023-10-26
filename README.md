@@ -1,5 +1,10 @@
 # Active emotion detection | Recognising audio sigments with high emotional activation
 
+This project is using large audio [dataset](https://ecs.utdallas.edu/research/researchlabs/msp-lab/MSP-Podcast.html) with emotional annotations to train 5 deep learning models with different architectures to recognise high level of emotional activation in audio segments.
+
+![](./imgs/emotionmodel.png)
+
+
 For this projet I developed a custom deep learning framework to configure and run the experiments, as well as to preprocess and load the data.
 
 Most of the models in my experiments are able to learn from mini-batches of different size. For this purpose I developed a [dataloader](https://github.com/ViktorAnchutin/detecting_active_emotion/blob/8eecbd2ed6c3079f40357a8290727d1ebcaf2b61/data/dataloader.py#L21) which builds mini batches from the data of similar length to avoid padding overhead.
@@ -17,9 +22,6 @@ ________________________________________________
 ***experiments*** module - experiments running and models architecture
 ___________________________
 
-This project is using large audio [dataset](https://ecs.utdallas.edu/research/researchlabs/msp-lab/MSP-Podcast.html) with emotional annotations to train 5 deep learning models with different architectures to recognise high level of emotional activation in audio segments.
-
-![](./imgs/emotionmodel.png)
 ![](./imgs/experiments.png)
 
 
