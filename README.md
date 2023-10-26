@@ -1,4 +1,4 @@
-# Active emotion detection | Recognising audio sigments with high emotional activation
+# Active emotion detection | Recognising audio segments with high emotional activation
 
 This project is using large audio [dataset](https://ecs.utdallas.edu/research/researchlabs/msp-lab/MSP-Podcast.html) with emotional annotations to train 5 deep learning models with different architectures to recognise high level of emotional activation in audio segments.
 
