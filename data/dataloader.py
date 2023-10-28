@@ -18,7 +18,7 @@ class DLIterator:
             raise StopIteration
 
 
-class MutiDataLoader:
+class MultiDataLoader:
     '''Interface combining multiple dataloaders. Used to iterate over dataloaders of different length'''
     def __init__(self,datasets,create_dl_fn) -> None:
         self.dls=list(map(create_dl_fn, datasets))
