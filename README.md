@@ -1,5 +1,9 @@
 # Active emotion detection | Recognising audio segments with high emotional activation
 
+In this project I build an emotional speech detector. The goal is to train the model which can recognise active emotion in a speech segment.
+
+![](./imgs/actemo.png)
+
 This project is using large audio [dataset](https://ecs.utdallas.edu/research/researchlabs/msp-lab/MSP-Podcast.html) with emotional annotations to train 5 deep learning models with different architectures to recognise high level of emotional activation in audio segments.
 
 ![](./imgs/emotionmodel.png)
