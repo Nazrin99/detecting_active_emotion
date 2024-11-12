@@ -1,4 +1,3 @@
-from tqdm import tqdm
 import functools
 from typing import Iterable
 from tqdm import tqdm
@@ -20,17 +19,18 @@ class Listener:
 
 
 class ListenerList(Listener):
-    '''A container of callbacks to delegete calls to all the listeners'''
+    '''A container of callbacks to delegate calls to all the listeners'''
     def __init__(self, callbacks: Iterable[Listener], trainer = None):
       self.callbacks = sorted(callbacks, key=lambda x: x._order)
       if trainer is not None:
         self.register(trainer)
 
+    """For each callbacks in this ListenerList, register the trainer to all the callbacks"""
     def register(self, trainer):
       for obs in self.callbacks: obs.register_trainer(trainer)
 
     def __getattribute__(self, attr):
-      if hasattr(Listener, attr): # redirect call to all childner if the method is from Observer
+      if hasattr(Listener, attr): # redirect call to all children if the method is from Observer
         def call_all(items, fn):
           for item in items:
             getattr(item, fn)()
@@ -40,7 +40,7 @@ class ListenerList(Listener):
 
 
 class Trainer:
-  '''A class that defines training loop algirithm. Inspired by the fast.ai Learner class'''
+  '''A class that defines training loop algorithm. Inspired by the fast.ai Learner class'''
   def __init__(self, model, train_dl, valid_dl, opt_func,
                lr, loss_func, callbacks: Iterable[Listener], train_cb=None, device='cpu'):
     self.model, self.train_dl, self.valid_dl, self.lr = model, train_dl, valid_dl, lr
