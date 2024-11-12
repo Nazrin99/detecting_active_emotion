@@ -49,7 +49,7 @@ class BasicDataset:
 
 class AudioDataset(BasicDataset):
   '''Dataset of items based on the raw audio files'''
-  def __init__(self,annotations,transformations,path='Audios/Audio'):
+  def __init__(self,annotations,transformations,path='D:/FYP/Audios/Audio'):
     super().__init__(annotations,transformations)
     self.path = path
 
