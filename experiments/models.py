@@ -4,6 +4,7 @@ from timm.models import VisionTransformer
 from transformers import Wav2Vec2Model
 import torch
 from data.dataloader import Batch
+import torch.nn.functional as F
 
 
 class Model(nn.Module):
@@ -94,6 +95,26 @@ class SimpleFusion(nn.Module):
         x_spctr = self.projection_spctr(x_spctr)
         return torch.cat([x_w2v, x_spctr],dim=1)
 
+class AttentionFusion(nn.Module):
+    def __init__(self, dim_w2v=768, dim_spctr=768) -> None:
+        super(AttentionFusion,self).__init__()
+        self.prob_audio = nn.Linear(256, 1)
+        self.prob_img = nn.Linear(256, 1)
+        self.proj_audio = nn.Linear(dim_w2v, 128)
+        self.proj_img = nn.Linear(dim_spctr, 128)
+
+    def forward(self,x_w2v,x_spctr):
+        x_w2v = self.proj_audio(x_w2v)
+        x_spctr = self.proj_img(x_spctr)
+        audio_img = torch.cat((x_w2v, x_spctr), dim=1)
+
+        prob_audio = F.sigmoid(self.prob_audio(audio_img))
+        prob_img = F.sigmoid(self.prob_img(audio_img))
+
+        x_w2v = prob_audio * x_w2v
+        x_spctr = prob_img * x_spctr
+
+        return torch.cat((x_w2v, x_spctr), dim=1)
 
 class HybridModel(Model):
   '''A model that combines both w2v2 and spectrogram features'''
